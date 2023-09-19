@@ -9,6 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  var images = {
+    "1.jpg" : "first",
+    "2.jpg" : "second",
+    "3.jpg" : "third",
+  };
+
   @override Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
@@ -34,13 +40,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ],
             ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 30),
           // Discover Text
           Container(
             margin: const EdgeInsets.only(left: 20),
             child: AppLargeText(text: "Discover"),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 20),
           // Tabbar
           Container(
             child: Align(
@@ -106,10 +112,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Container(
             margin: const EdgeInsets.only(left: 20),
             width: double.maxFinite,
-            height: 100,
+            height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-                itemCount: 4,
+                itemCount: images.length * 2,
                 itemBuilder: (_, index) {
                   return Container(
                     margin: const EdgeInsets.only(right: 30),
@@ -122,12 +128,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
                             image: DecorationImage(
-                                image: AssetImage("img/1.jpg"),
+                                image: AssetImage("img/"+ images.keys.elementAt(index % 3)),
                                 fit: BoxFit.cover),
                           ),
                         ),
+                        SizedBox(height: 10),
                         Container(
-                          child: AppText(text: "omitoful", color: AppColors.textColor2),
+                          child: AppText(text: images.values.elementAt(index % 3), color: AppColors.textColor2),
                         ),
                       ],
                     ),
