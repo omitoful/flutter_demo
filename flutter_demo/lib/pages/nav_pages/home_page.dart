@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/misc/colors.dart';
 import 'package:flutter_demo/widgets/app_large_text.dart';
+import 'package:flutter_demo/widgets/app_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             margin: const EdgeInsets.only(left: 20),
             child: AppLargeText(text: "Discover"),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 30),
           // Tabbar
           Container(
             child: Align(
@@ -66,11 +67,72 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                Text("Hi"),
+                ListView.builder(
+                  padding: const EdgeInsets.only(left: 20),
+                  itemCount: 3,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: const EdgeInsets.only(right: 15, top: 10),
+                      width: 200,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        image: DecorationImage(
+                            image: AssetImage("img/1.jpg"), fit: BoxFit.cover),
+                      ),
+                    );
+                  },
+                ),
                 Text("There"),
                 Text("Bye"),
               ],
             ),
+          ),
+          // Explore More
+          SizedBox(height: 30),
+          Container(
+            margin: const EdgeInsets.only(right: 20, left: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppLargeText(text: "Explore More", size: 22),
+                AppText(text: "See all", color: AppColors.textColor1,)
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            width: double.maxFinite,
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (_, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 30),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            image: DecorationImage(
+                                image: AssetImage("img/1.jpg"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(
+                          child: AppText(text: "omitoful", color: AppColors.textColor2),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
           ),
         ],
       ),
