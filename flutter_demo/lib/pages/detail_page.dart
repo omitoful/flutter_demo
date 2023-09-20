@@ -3,6 +3,7 @@ import 'package:flutter_demo/misc/colors.dart';
 import 'package:flutter_demo/widgets/app_buttons.dart';
 import 'package:flutter_demo/widgets/app_large_text.dart';
 import 'package:flutter_demo/widgets/app_text.dart';
+import 'package:flutter_demo/widgets/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
@@ -107,7 +108,7 @@ class _DetailPageState extends State<DetailPage> {
                       Wrap(
                         children: List.generate(5, (index) {
                           return InkWell(
-                            onTap: (){
+                            onTap: () {
                               setState(() {
                                 selectedIndex = index;
                               });
@@ -116,9 +117,15 @@ class _DetailPageState extends State<DetailPage> {
                               margin: const EdgeInsets.only(right: 10),
                               child: AppButtons(
                                 size: 50,
-                                color: selectedIndex == index ? Colors.white : Colors.black,
-                                backgroundColor: selectedIndex == index ? Colors.black : AppColors.btnBgColor,
-                                borderColor: selectedIndex == index ? Colors.black : AppColors.btnBgColor,
+                                color: selectedIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
+                                backgroundColor: selectedIndex == index
+                                    ? Colors.black
+                                    : AppColors.btnBgColor,
+                                borderColor: selectedIndex == index
+                                    ? Colors.black
+                                    : AppColors.btnBgColor,
                                 text: (index + 1).toString(),
                               ),
                             ),
@@ -126,9 +133,40 @@ class _DetailPageState extends State<DetailPage> {
                         }),
                       ),
                       SizedBox(height: 20),
+                      AppLargeText(
+                          text: "Description",
+                          color: Colors.black.withOpacity(0.8),
+                          size: 20),
+                      SizedBox(height: 10),
+                      AppText(
+                        text:
+                            "From this tutorial we build a flutter cubit / bloc state management app. We will build it step by step. We will also build the ui and do api request.",
+                        color: AppColors.mainTextColor,
+                      ),
                     ],
                   ),
-                ))
+                )),
+            Positioned(
+              bottom: 20,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  AppButtons(
+                    size: 60,
+                    color: AppColors.textColor1,
+                    backgroundColor: Colors.white,
+                    borderColor: AppColors.textColor1,
+                    icon: Icons.favorite_border,
+                    isIcon: true,
+                  ),
+                  SizedBox(width: 20),
+                  ResponsiveButton(
+                    isResponsive: true,
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
